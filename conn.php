@@ -1,9 +1,9 @@
 <?php
 
-$dbsevername = "sql306.epizy.com";
-$dbusername = "epiz_32759108";
-$dbpassword = "ekdx7lLM85VWs";
-$dbname = "epiz_32759108_e_com_system";
+$dbsevername = "fdb28.awardspace.net";
+$dbusername = "4190923_ecom";
+$dbpassword = "M383EYJP@7ZDK@y";
+$dbname = "4190923_ecom";
 
 $conn = mysqli_connect($dbsevername, $dbusername, $dbpassword, $dbname);
 if (!$conn) {
