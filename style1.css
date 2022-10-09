@@ -1,0 +1,55 @@
+body {
+
+/* ff 3.6+ */
+background: -moz-linear-gradient(90deg, rgba(206, 255, 208, 1) 0%, rgba(149, 219, 233, 1) 100%);
+
+/* safari 5.1+,chrome 10+ */
+background: -webkit-linear-gradient(90deg, rgba(206, 255, 208, 1) 0%, rgba(149, 219, 233, 1) 100%);
+
+/* opera 11.10+ */
+background: -o-linear-gradient(90deg, rgba(206, 255, 208, 1) 0%, rgba(149, 219, 233, 1) 100%);
+
+/* ie 6-9 */
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#95DBE9', endColorstr='#CEFFD0', GradientType=0);
+
+/* ie 10+ */
+background: -ms-linear-gradient(90deg, rgba(206, 255, 208, 1) 0%, rgba(149, 219, 233, 1) 100%);
+
+/* global 94%+ browsers support */
+background: linear-gradient(90deg, rgba(206, 255, 208, 1) 0%, rgba(149, 219, 233, 1) 100%);
+
+
+}
+
+.logout button {
+border: none;
+color: white;
+background: -moz-linear-gradient(90deg, rgba(76, 175, 80, 1) 0%, rgba(49, 220, 255, 1) 100%);
+
+/* safari 5.1+,chrome 10+ */
+background: -webkit-linear-gradient(90deg, rgba(76, 175, 80, 1) 0%, rgba(49, 220, 255, 1) 100%);
+
+/* opera 11.10+ */
+background: -o-linear-gradient(90deg, rgba(76, 175, 80, 1) 0%, rgba(49, 220, 255, 1) 100%);
+
+/* ie 6-9 */
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#31DCFF', endColorstr='#4CAF50', GradientType=0);
+
+/* ie 10+ */
+background: -ms-linear-gradient(90deg, rgba(76, 175, 80, 1) 0%, rgba(49, 220, 255, 1) 100%);
+
+/* global 94%+ browsers support */
+background: linear-gradient(90deg, rgba(76, 175, 80, 1) 0%, rgba(49, 220, 255, 1) 100%);
+
+}
+
+.container-header {
+display: flex;
+justify-content: space-between;
+}
+
+.main-container {
+padding: 20px;
+border-radius: 20px;
+background-color: rgb(240, 240, 235);
+}

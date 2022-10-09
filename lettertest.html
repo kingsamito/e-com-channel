@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>LETTER</title>
+	<link rel="stylesheet" href="./lettertest.css" >
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<div class="main-container">
+	<?php
+
+	$id = $_GET['id'];
+	$sql = "SELECT * FROM exeat_inbox WHERE id=$id";
+	$result = mysqli_query($conn,$sql);
+	if(mysqli_num_rows($result)){
+		$row=mysqli_fetch_assoc($result);
+
+	}
+	  $sender = $row['sender'];
+	  $matric = $row['matric'];
+	  $to = $row['too'];
+	  $through = $row['through'];
+	  $block = $row['block'];
+	  $room = $row['room'];
+	  $hostel = $row['hostel'];
+	  $subject = $row['subject'];
+	  $message = $row['message'];
+	  $parent = $row['parentnumber'];
+	  $date = $row['date'];
+	  $hm_comment = $row['hm_comment'];
+	  $dsa_comment = $row['dsa_comment'];
+
+	  
+	  $query = "SELECT * FROM non_academic_staff WHERE Position = 'Hall Master'";
+	  $queryres = mysqli_query($conn,$query);
+	  if(mysqli_num_rows($queryres)){
+		$row=mysqli_fetch_assoc($queryres);
+		$name = $row['Lastname']." ".$row['Firstname'];
+
+	}
+	  $query1 = "SELECT * FROM non_academic_staff WHERE Position = 'Chief Medical Director'";
+	  $queryres1 = mysqli_query($conn,$query1);
+	  if(mysqli_num_rows($queryres1)){
+		$row1=mysqli_fetch_assoc($queryres1);
+		$name1 = $row1['Lastname']." ".$row1['Firstname'];
+
+	}
+	  $query2 = "SELECT * FROM non_academic_staff WHERE Position = 'Dean Student Affairs'";
+	  $queryres2 = mysqli_query($conn,$query2);
+	  if(mysqli_num_rows($queryres2)){
+		$row2=mysqli_fetch_assoc($queryres2);
+		$name2 = $row2['Lastname']." ".$row2['Firstname'];
+
+	}
+  
+?>
+	<div class="top-content">
+	<div class="top-left"><h1>LETTER FORMAT</h1></div>
+		<div class="top-right">
+			<p><?php echo "Room ". $room.", ".$block." block,"; ?></p>
+			<p><?php echo $hostel." hostel,"; ?></p>
+			<p>Crawford University</p>
+			<p>Ogun state</p>
+			<p><?php echo $date."."; ?></p>
+	</div>
+	</div>
+<div class="left">
+	<p>To: <?php echo $to; ?></p>
+        <p>Through: <?php echo $through; ?></p>
+        <p>Crawford University,</p>
+        <p>Faith city, Lusada,</p>
+        <p>Ogun State.</p>
+	
+</div>
+
+<div class="receiver-name"><p>Dear Ms Jodie,</p></div>
+
+<div class="content">
+	<div class="letter-content">
+		<div class="text-center">
+            <h4><?php echo $subject; ?></h4>
+        </div>
+        <div>
+            <p><?php echo "<b>My name is ".$sender." with matric number ".$matric." </b> ".$message; ?></p>
+        </div>
+        <div>Parent phone number: <?php echo $parent; ?></div></div> </div>
+<div class="footer"> <p>Yours Sincerely,
+</p>
+<p>Signature</p>
+<p>$sender,</p>
+<p>President</p>
+<div class="container">
+	<?php
+	
+	
+		if($_SESSION['Position'] == 'Dean Student Affairs' && $dsa_comment == ''){
+			echo '<form method="post">
+			<button class="btn btn-success" type="submit" name="approve">Approve</button>
+			<button class="btn btn-danger" type="submit" name="decline">Decline</button>
+			
+			</form>';
+				if(isset($_POST['approve'])){
+					$dsa_comment = "Approved: ".date("d-m-Y");
+					$sql = "UPDATE exeat_inbox SET dsa_comment='$dsa_comment' WHERE id=$id";
+					$result = mysqli_query($conn,$sql);
+					if($result){
+						$asql = "INSERT INTO student_exeat_inbox(`sender`, `matric`, `too`, `through`, `block`, `room`, `hostel`, `subject`, `message`, `parentnumber`,`hm_comment`,`dsa_comment`) VALUES('$sender', '$matric' , '$to', '$through','$block','$room','$hostel','$subject','$message','$parent','$hm_comment','$dsa_comment')";
+						$aresult = mysqli_query($conn,$asql);
+						header("Location: exeatinboxopen.php?id=$id");
+					}
+/*                         $aasql = "INSERT INTO adminapprove(`sender`, `matric`, `too`, `through`, `block`, `room`, `hostel`, `subject`, `message`, `parentnumber`,`hm_comment`,`dsa_comment`) VALUES('$sender', '$matric' , '$to', '$through','$block','$room','$hostel','$subject','$message','$parent','$hm_comment','$dsa_comment')";
+*/                        
+/*                         $aaresult = mysqli_query($conn,$aasql);
+*/                        
+					
+				}
+				if(isset($_POST['decline'])){
+					$dsa_comment = "Declined: ".date("d-m-Y");
+					$sql = "UPDATE exeat_inbox SET dsa_comment='$dsa_comment' WHERE id=$id";
+					$result = mysqli_query($conn,$sql);
+					if($result){
+						$dsql = "INSERT INTO student_exeat_inbox(`sender`, `matric`, `too`, `through`, `block`, `room`, `hostel`, `subject`, `message`, `parentnumber`,`hm_comment`,`dsa_comment`) VALUES('$sender', '$matric' , '$to', '$through','$block','$room','$hostel','$subject','$message','$parent','$hm_comment','$dsa_comment')";
+						$dresult = mysqli_query($conn,$dsql);
+						header("Location: exeatinboxopen.php?id=$id");
+					}
+				}
+		}else{
+			$dsa_comment = $dsa_comment;
+			} 
+
+	
+	   if($_SESSION['Position'] == 'Hall Master' || $_SESSION['Position'] == 'Chief Medical Director' && $hm_comment == ''){
+			echo '<form method="post">
+			<button class="btn btn-success" type="submit" name="approve">Approve</button>
+			<button class="btn btn-danger" type="submit" name="decline">Decline</button>
+			
+			</form>';
+				if(isset($_POST['approve'])){
+					$hm_comment = "Approved: ".date("d-m-Y");
+					$sql = "UPDATE exeat_inbox SET hm_comment='$hm_comment' WHERE id=$id";
+					$result = mysqli_query($conn,$sql);
+					
+					header("Location: exeatinboxopen.php?id=$id");
+					
+				}
+				if(isset($_POST['decline'])){
+					$hm_comment = "Declined: ".date("d-m-Y");
+					$sql = "UPDATE exeat_inbox SET hm_comment='$hm_comment' WHERE id=$id";
+					$result = mysqli_query($conn,$sql);
+					header("Location: exeatinboxopen.php?id=$id");
+				}
+		}else{
+			$hm_comment = $hm_comment;
+			}
+	
+
+	
+	?>
+	<div class="row">
+	 <div class="col">
+		 <?php
+		 if($_SESSION['Position'] == 'Hall Master'){
+			 echo "<h6>".$name."<br>".$through."<br>".$hm_comment."</h6>";
+		 }
+		 if($_SESSION['Position'] == 'Chief Medical Director'){
+			 echo "<h6>".$name1."<br>".$through."<br>".$hm_comment."</h6>";
+		 }
+		 ?>
+   </div>
+   <div class="col">
+   <?php
+			 echo "<h6>".$name2."<br>".$to."<br>".$dsa_comment."</h6>";
+		 ?>
+   </div>
+   
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

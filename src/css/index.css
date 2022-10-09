@@ -1,0 +1,127 @@
+.rotate {  
+    animation-name: ani-rotate;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: none;
+  }
+ 
+  @keyframes ani-rotate {
+    0%{ transform: rotate(0); }
+    100%{ transform: rotate(360deg); }  
+  }
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+.container {
+  
+  margin-bottom: 50px;
+
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+
+
+
+
+
+.container .content {
+  animation: fadeInAnimation ease 0.5s;
+    animation-iteration-count: 1;
+   
+  padding-top: 8rem;
+
+}
+.container .content h1{
+font-weight: 700;
+
+}
+.container .content {
+margin: 0 auto;
+padding: 0 auto; 
+}
+.container .content p{
+
+  font-size: 28px;
+  width: 100%;
+}
+
+.svg {
+  position: absolute;
+  top: 0;
+  left: 50;
+  z-index: -1;
+}
+
+.button:hover {
+  color:  white;
+}
+.button {
+  border: none;
+      background:-moz-linear-gradient(90deg, rgba(76, 175, 80, 1) 0%, rgba(49, 220, 255, 1) 100%); 
+
+ 
+    background:-webkit-linear-gradient(90deg, rgba(76, 175, 80, 1) 0%, rgba(49, 220, 255, 1) 100%);
+
+  
+    background:-o-linear-gradient(90deg, rgba(76, 175, 80, 1) 0%, rgba(49, 220, 255, 1) 100%);
+
+       filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#31DCFF', endColorstr='#4CAF50', GradientType=0 );
+
+ 
+    background:-ms-linear-gradient(90deg, rgba(76, 175, 80, 1) 0%, rgba(49, 220, 255, 1) 100%);
+
+  
+    background:linear-gradient(90deg, rgba(76, 175, 80, 1) 0%, rgba(49, 220, 255, 1) 100%);
+  padding: 15px;
+  color: white;
+  font-weight: 700;
+  font-size: 23px;
+}
+
+@media  screen and (min-width: 767px) {
+.container .content h1{
+font-weight: 700;
+
+}
+.container .content {
+margin: 0 auto;
+padding: 0 auto; 
+}
+.container .content p{
+
+  font-size: 38px;
+  width: 100%;
+}
+
+}
+
+@media screen and (min-width: 991px) {
+  .container .content {
+  padding-top: 10rem;
+
+}
+.container .content h1{
+font-weight: 700;
+
+}
+.container .content {
+margin: 0 auto;
+padding: 0 auto; 
+}
+.container .content p{
+
+  font-size: 50px;
+  width: 100%;
+}
+
+
+}

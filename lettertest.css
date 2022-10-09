@@ -1,0 +1,69 @@
+.top-content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.receiver-name {
+	margin-top: 3rem;
+}
+
+.content {
+
+	display: flex;
+	justify-content: center;
+	padding: 0px 20px 0px 20px;
+}
+
+.main-container {
+	padding-top: 50px;
+}
+
+.memo-main-container {
+	padding: 20px;
+}
+
+.noScreen {
+	text-align: center;
+}
+
+* {
+	font-family: 'Goudy Bookletter 1911', serif;
+}
+
+.header.row {
+	border-bottom: none;
+}
+
+.header.row>div:nth-child(2) {
+	border-left: none;
+}
+
+@media screen {
+	.noScreen {
+		display: none;
+	}
+}
+
+@media print {
+	.noprint {
+		display: none;
+	}
+
+}
+
+@media only screen and (min-width:768px) {
+	.main-container {
+		padding: 50px;
+	}
+}
+
+@media (min-width:768px) {
+	.header.row {
+		border-bottom: 2px solid black;
+	}
+
+	.header.row>div:nth-child(2) {
+		border-left: 2px solid black;
+	}
+}
